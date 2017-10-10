@@ -1,148 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>HCI Project</title>
+    <title>Join this Cuckoo Timer!</title>
     <link rel="stylesheet" href="css/style.css" media="all">
+    <meta charset="utf-8">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//use.typekit.net">
+    <link rel="dns-prefetch" href="//www.google-analytics.com">
+    <link rel="shortcut icon" href="/images/favicon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="on" http-equiv="cleartype">
+    <meta content="True" name="HandheldFriendly">
+    <meta content="320" name="MobileOptimized">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Cuckoo">
+    <meta name="format-detection" content="telephone=no">
+    <meta content="initial-scale=1, user-scalable=no, width=device-width" name="viewport">
+    <style>
+        html {
+            -webkit-text-size-adjust: 100%;
+        }
+    </style>
+    <link href="/images/app-icons/apple-touch-icon-152x152.png" sizes="152x152" rel="apple-touch-icon">
+    <link href="/images/app-icons/apple-touch-icon-144x144.png" sizes="144x144" rel="apple-touch-icon">
+    <link href="/images/app-icons/apple-touch-icon-120x120.png" sizes="120x120" rel="apple-touch-icon">
+    <link href="/images/app-icons/apple-touch-icon-114x114.png" sizes="114x114" rel="apple-touch-icon">
+    <link href="/images/app-icons/apple-touch-icon-76x76.png" sizes="76x76" rel="apple-touch-icon">
+    <link href="/images/app-icons/apple-touch-icon-72x72.png" sizes="72x72" rel="apple-touch-icon">
+    <link href="/images/app-icons/apple-touch-icon-57x57.png" sizes="57x57" rel="apple-touch-icon">
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <meta name="description" content="Create a timer, share it with your team and get ready for more productive meetings.">
+    <meta name="keywords" content="productivity, timer, remote, teams, pomodoro">
+    <meta name="application-name" content="Cuckoo">
+    <meta property="og:title" content="Join this Cuckoo Timer!">
+    <meta property="og:type" content="product">
+    <meta property="og:image" content="https://cuckoo.team/images/og_image.png">
+    <meta property="og:url" content="https://cuckoo.team">
+    <meta property="og:description" content="Create a timer, share it with your team and get ready for more productive meetings.">
+    <meta property="al:ios:app_name" content="Cuckoo">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Join this Cuckoo Timer!">
+    <meta name="twitter:description" content="Create a timer, share it with your team and get ready for more productive meetings.">
+    <meta name="twitter:image" content="https://cuckoo.team/images/og_image.png">
 </head>
 <body>
-
-<div class="section section--index text-align-center" >
-    <div class="js-bubble-container bubble__container">
-        <svg id="workSession" width="1054" height="637">
-            <g class="bubble js-bubble-play" data-duration="5" transform="translate(551.3818632154549,308.5527741189979)">
-                <circle class="bubble__circle" r="37"></circle>
-                <text dx="0" dy=".35em" y="0" class="bubble__text" font-size="29.6">
-                    <tspan x="0" y="0" dy="0.35em">5</tspan>
-                </text>
-            </g>
-            <g class="bubble js-bubble-play" data-duration="15" transform="translate(549.5909080594231,190.591873422707)">
-                <circle class="bubble__circle" r="51"></circle>
-                <text dx="0" dy=".35em" y="0" class="bubble__text" font-size="40.800000000000004">
-                    <tspan x="0" y="0" dy="0.35em">15</tspan>
-                </text>
-            </g>
-            <g class="bubble js-bubble-play" data-duration="25" transform="translate(631.1395620721669,413.743173960439)">
-                <circle class="bubble__circle" r="65"></circle>
-                <text dx="0" dy=".35em" y="0" class="bubble__text" font-size="52">
-                    <tspan x="0" y="0" dy="0.35em">25</tspan>
-                </text>
-            </g>
-            <g class="bubble js-bubble-play" data-duration="30" transform="translate(418.12554021368743,268.95995725273974)">
-                <circle class="bubble__circle" r="72"></circle>
-                <text dx="0" dy=".35em" y="0" class="bubble__text" font-size="57.6">
-                    <tspan x="0" y="0" dy="0.35em">30</tspan>
-                </text>
-            </g>
-            <g onclick="displayBreaks()" class="bubble js-bubble-play" data-duration="HAVE A-BREAK" transform="translate(485.3240546809826,406.4057490544182)">
-                <circle class="bubble__circle" r="51"></circle>
-                <text dx="0" dy=".35em" y="-8.5" class="bubble__text" font-size="14.571428571428571" letter-spacing="0.2em">
-                    <tspan x="0" y="-8.5" dy="0.35em">HAVE A</tspan>
-                    <tspan x="0" y="-8.5" dy="1.4500000000000002em">BREAK</tspan>
-                </text>
-            </g>
-        </svg>
-
-        <svg id="breakSession" style="display: none" width="1054" height="588">
-
-                <g class="bubble js-bubble-play" data-duration="5" transform="translate(513.6632368065814,296.60065992394135)">
-                    <circle class="bubble__circle" r="37"></circle>
-                    <text dx="0" dy=".35em" y="0" class="bubble__text" font-size="29.6">
-                        <tspan x="0" y="0" dy="0.35em">5</tspan>
-                    </text>
-                </g>
-                <g class="bubble js-bubble-play" data-duration="15" transform="translate(615.4660353629085,356.48211417999175)">
-                    <circle class="bubble__circle" r="51"></circle>
-                    <text dx="0" dy=".35em" y="0" class="bubble__text" font-size="40.800000000000004">
-                        <tspan x="0" y="0" dy="0.35em">15</tspan>
-                    </text>
-                </g>
-                <g class="bubble js-bubble-play" data-duration="20" transform="translate(391.72833637628577,323.8575499234582)">
-                    <circle class="bubble__circle" r="58"></circle>
-                    <text dx="0" dy=".35em" y="0" class="bubble__text" font-size="46.400000000000006">
-                        <tspan x="0" y="0" dy="0.35em">20</tspan>
-                    </text>
-                </g>
-                <g class="bubble js-bubble-play" data-duration="30" transform="translate(616.8415396418047,203.45970317535006)">
-                    <circle class="bubble__circle" r="72"></circle>
-                    <text dx="0" dy=".35em" y="0" class="bubble__text" font-size="57.6">
-                        <tspan x="0" y="0" dy="0.35em">30</tspan>
-                    </text>
-                </g>
-                <g onclick="displayWorks()" class="bubble js-bubble-play" data-duration="SKIP-BREAK" transform="translate(497.3008375955956,412.0999713538511)">
-                    <circle class="bubble__circle" r="49.599999999999994"></circle>
-                    <text dx="0" dy=".35em" y="-8.266666666666666" class="bubble__text" font-size="14.171428571428569" letter-spacing="0.2em">
-                        <tspan x="0" y="-8.266666666666666" dy="0.35em">SKIP</tspan>
-                        <tspan x="0" y="-8.266666666666666" dy="1.4500000000000002em">BREAK</tspan>
-                    </text>
-                </g>
-
-        </svg>
+<noscript>
+    <div class="browser-warning">
+        <p>
+            Your browser has <strong>javascript turned off</strong>
+            . Please <a href="http://www.activatejavascript.org/">enable javascript</a>
+            , or you may need to <a href="http://browsehappy.com/">upgrade your browser</a>
+            .
+        </p>
+        </p></div></noscript>
+<div class="page page--name js-page--name" style="display: none;">
+    <div class="page__dialog">
+        <form class="js-join-cuckoo-form">
+            <div class="form__row">
+                <label class="label label--dark text-align-center">What's your name?</label>
+                <input class="input input--default input--dark" type="text" id="username" placeholder="i.e.: Tim Cuckoo" autofocus="autofocus">
+            </div>
+            <div class="form__row form__row--action text-align-center">
+                <button class="btn btn--submit js-onboarding-submit btn--purple js-sound-mouseHover" type="submit"></button>
+            </div>
+        </form>
     </div>
-    <div class="session-type">Work Time</div>
+</div>
+<div class="js-progress-bar progress-bar"></div>
+<div class="section section--index text-align-center">
+    <div class="js-bubble-container bubble__container"></div>
+    <div class="js-notification"></div>
+    <div class="session-type"></div>
     <div class="timer timer--clock">
-        <div class="js-timer-purpose timer__purpose">Try to find Narnia!<span>break tip by <a href="https://twitter.com/Team Timer" target="_blank">@Team Timer</a>. <a href="https://twitter.com/intent/tweet?text=This is my tip on what to do during a break in @Team Timer&amp;via=Team Timer&amp;hashtags=breaktip" target="_blank">send yours →</a></span></div><span class="js-timer timer__display">00:00</span>
-        <div class="show-shortcuts"><a class="js-timer-control link-event link-event--play hide-on-pause" href="javascript:;" onclick="timerAction('play/pause/unpause')" data-shortcut="space">Start</a><a class="js-timer-control link-event link-event--pause hide-on-pause" href="javascript:;" onclick="timerAction('play/pause/unpause')" data-shortcut="space">Pause</a>
-            <div class="link-events"><a class="js-timer-control link-event link-event--paused" href="javascript:;" onclick="timerAction('play/pause/unpause')" data-shortcut="space">Resume</a><a class="js-timer-control link-event link-event--paused" href="javascript:;" onclick="timerAction('reset')" data-shortcut="r">Reset</a><a class="js-timer-control link-event link-event--paused" href="javascript:;" onclick="timerAction('stop')" data-shortcut="esc">Stop</a></div>
-        </div>
-    </div>
-    <div class="team">
-        <div class="team__list"><span class="js-team__list"><div class="avatar hasGravatar"><div class="avatar__image" data-fullname="shohan" ><span data-label="S"></span></div>
-</div>
-<div class="team__add-member">
-    <input class="js-copy-clipboard js-checkbox" type="checkbox" data-clipboard-action="copy" data-clipboard-target="#js-content-clipboard">
-    <div class="share">
-        <div class="share__title">URL copied!</div>
-        <div class="share__url">
-            <input class="input input--clipboard" readonly="" id="js-content-clipboard" value="https://teamtimer/shohan" size="24">
-            <button class="btn btn--clipboard js-copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#js-content-clipboard">Copy to clipboard</button>
-        </div>
-    </div>
-</div>
-</span>
-        </div>
-        <div class="team__info js-team__info"><span>1 member(s) in this Team Timer.</span></div>
-        <div class="timer timer--clock">
-            <div class="js-timer-purpose timer__purpose">Try to find Narnia!<span>break tip by <a href="https://twitter.com/Team Timer" target="_blank">@Team Timer</a>. <a href="https://twitter.com/intent/tweet?text=This is my tip on what to do during a break in @Team Timer&amp;via=Team Timer&amp;hashtags=breaktip" target="_blank">send yours →</a></span></div><span class="js-timer timer__display">00:00</span>
-            <div class="show-shortcuts"><a class="js-timer-control link-event link-event--play hide-on-pause" href="javascript:;" onclick="timerAction('play/pause/unpause')" data-shortcut="space">Start</a><a class="js-timer-control link-event link-event--pause hide-on-pause" href="javascript:;" onclick="timerAction('play/pause/unpause')" data-shortcut="space">Pause</a>
-                <div class="link-events"><a class="js-timer-control link-event link-event--paused" href="javascript:;" onclick="timerAction('play/pause/unpause')" data-shortcut="space">Resume</a><a class="js-timer-control link-event link-event--paused" href="javascript:;" onclick="timerAction('reset')" data-shortcut="r">Reset</a><a class="js-timer-control link-event link-event--paused" href="javascript:;" onclick="timerAction('stop')" data-shortcut="esc">Stop</a></div>
+        <div class="js-timer-purpose timer__purpose"></div>
+        <span class="js-timer timer__display">00:00</span>
+        <div class="show-shortcuts">
+            <a class="js-timer-control link-event link-event--play hide-on-pause" href="javascript:;" onclick="timerAction('play/pause/unpause')" data-shortcut="space">Start</a>
+            <a class="js-timer-control link-event link-event--pause hide-on-pause" href="javascript:;" onclick="timerAction('play/pause/unpause')" data-shortcut="space">Pause</a>
+            <div class="link-events">
+                <a class="js-timer-control link-event link-event--paused" href="javascript:;" onclick="timerAction('play/pause/unpause')" data-shortcut="space">Resume</a>
+                <a class="js-timer-control link-event link-event--paused" href="javascript:;" onclick="timerAction('reset')" data-shortcut="r">Reset</a>
+                <a class="js-timer-control link-event link-event--paused" href="javascript:;" onclick="timerAction('stop')" data-shortcut="esc">Stop</a>
             </div>
         </div>
     </div>
-
+    <div class="team">
+        <div class="team__list">
+            <span class="js-team__list">
+                <div class="team__add-member">
+                    <input class="js-copy-clipboard js-checkbox" type="checkbox" data-clipboard-action="copy" data-clipboard-target="#js-content-clipboard">
+                    <div class="share">
+                        <div class="share__title">URL copied!</div>
+                        <div class="share__url">
+                            <input class="input input--clipboard" readonly id="js-content-clipboard" value="https://cuckoo.team/ckoSJPLuIch-">
+                            <button class="btn btn--clipboard js-copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#js-content-clipboard">Copy to clipboard</button>
+                        </div>
+                    </div>
+                </div>
+            </span>
+        </div>
+        <div class="team__info js-team__info"></div>
+    </div>
+    <div class="activity js-activity"></div>
 </div>
-<div class="sidebar js-sidebar" data-content-active="sessions">
+<div class="sidebar js-sidebar">
     <div class="sidebar__nav">
         <div class="js-sidebar-nav sidebar__icon sidebar__icon--sessions" onclick="toggleSidebar('sessions')" title="Sessions" data-sidebar-nav="sessions">Sessions</div>
         <div class="js-sidebar-nav sidebar__icon sidebar__icon--you" onclick="toggleSidebar('you')" title="You" data-sidebar-nav="you">You</div>
-        <div class="js-sidebar-nav sidebar__icon sidebar__icon--about" onclick="toggleSidebar('about')" title="About Team Timer">About Team Timer</div>
+        <div class="js-sidebar-nav sidebar__icon sidebar__icon--about" onclick="toggleSidebar('about')" title="About Cuckoo">About Cuckoo</div>
         <div class="js-sidebar-nav sidebar__icon sidebar__icon--feedback" onclick="toggleSidebar('feedback')" title="Feedback" data-sidebar-nav="feedback">You</div>
     </div>
     <div class="l-flex l-flex--full-height l-flex--vertical">
-        <div class="js-sidebar-content sidebar__body l-flex l-flex--vertical l-flex--space-between l-flex--scrollable" data-sidebar-content="sessions" style="">
+        <div class="js-sidebar-content sidebar__body l-flex l-flex--vertical l-flex--space-between l-flex--scrollable" data-sidebar-content="sessions">
             <div class="sidebar__header">Sessions</div>
-            <div class="sidebar__paragraph showOnRoadmap">The freestyle mode stays off while the Roadmap Mode is in operation.
-                <br>
+            <div class="sidebar__paragraph showOnRoadmap">
+                The freestyle mode stays off while the Roadmap Mode is in operation.<br>
                 <br>
                 <div class="btn btn--ghost" onclick="activateDeactivateRoadmap()">Go Back to Freestyle Mode</div>
             </div>
             <div class="hideOnRoadmap">
                 <div class="sidebar__sessions">
                     <div class="sidebar__title">Work Sessions</div>
-                    <div class="js-sessions" data-session-type="work">
-                        <div class="sidebar__session">5
-                            <div class="js-remove-session sidebar__delete" onclick="removeSession(this)"><img src="https://cuckoo.team/images/icon-close-circle.svg"></div>
-                        </div>
-                        <div class="sidebar__session">10
-                            <div class="js-remove-session sidebar__delete" onclick="removeSession(this)"><img src="https://cuckoo.team/images/icon-close-circle.svg"></div>
-                        </div>
-                        <div class="sidebar__session">15
-                            <div class="js-remove-session sidebar__delete" onclick="removeSession(this)"><img src="https://cuckoo.team/images/icon-close-circle.svg"></div>
-                        </div>
-                        <div class="sidebar__session">25
-                            <div class="js-remove-session sidebar__delete" onclick="removeSession(this)"><img src="https://cuckoo.team/images/icon-close-circle.svg"></div>
-                        </div>
-                    </div>
+                    <div class="js-sessions" data-session-type="work"></div>
                     <form class="js-add-session-form" data-session-type="work">
                         <div class="sidebar__session sidebar__session--input">
                             <input type="number" placeholder="ADD SESSION">
@@ -151,121 +135,123 @@
                 </div>
                 <div class="sidebar__sessions">
                     <div class="sidebar__title">Breaks</div>
-                    <div class="js-sessions" data-session-type="breakTime">
-                        <div class="sidebar__session">3
-                            <div class="js-remove-session sidebar__delete" onclick="removeSession(this)"><img src="https://cuckoo.team/images/icon-close-circle.svg"></div>
-                        </div>
-                        <div class="sidebar__session">4
-                            <div class="js-remove-session sidebar__delete" onclick="removeSession(this)"><img src="https://cuckoo.team/images/icon-close-circle.svg"></div>
-                        </div>
-                        <div class="sidebar__session">5
-                            <div class="js-remove-session sidebar__delete" onclick="removeSession(this)"><img src="https://cuckoo.team/images/icon-close-circle.svg"></div>
-                        </div>
-                        <div class="sidebar__session">10
-                            <div class="js-remove-session sidebar__delete" onclick="removeSession(this)"><img src="https://cuckoo.team/images/icon-close-circle.svg"></div>
-                        </div>
-                        <div class="sidebar__session">15
-                            <div class="js-remove-session sidebar__delete" onclick="removeSession(this)"><img src="https://cuckoo.team/images/icon-close-circle.svg"></div>
-                        </div>
-                    </div>
+                    <div class="js-sessions" data-session-type="breakTime"></div>
                     <form class="js-add-session-form" data-session-type="breakTime">
                         <div class="sidebar__session sidebar__session--input">
                             <input type="number" placeholder="ADD BREAK">
                         </div>
                     </form>
                 </div>
-
+                <div class="sidebar__divisor"></div>
+                <div class="sidebar__paragraph">
+                    <a onclick="presetSessions('pomodoro')">Use the Pomodoro Technique</a>
+                    <br>
+                    <span>or</span>
+                    <br>
+                    <a onclick="presetSessions('cuckoo')">Restore default preset</a>
+                </div>
             </div>
         </div>
-        <div class="js-sidebar-content sidebar__body l-flex l-flex--vertical l-flex--space-between l-flex--scrollable" data-sidebar-content="you" style="">
+        <div class="js-sidebar-content sidebar__body l-flex l-flex--vertical l-flex--space-between l-flex--scrollable" data-sidebar-content="you">
             <div class="sidebar__header">You</div>
             <div class="sidebar__you">
-                <div class="js-avatar">
-                    <div class="avatar hasGravatar">
-                        <div class="avatar__image" data-fullname="shohan" style=""><span data-label="S"></span></div>
-                    </div>
-                </div>
+                <div class="js-avatar"></div>
                 <form class="js-change-username-form">
                     <input class="js-username sidebar__you--username" type="text" placeholder="Type your name">
                 </form>
                 <form class="js-change-email-form">
                     <input class="js-email sidebar__you--email" type="text" placeholder="your@email.com">
                 </form>
-
+                <div class="sidebar__divisor"></div>
+                <div class="sidebar__paragraph">
+                    <p>
+                        We'll borrow your photo from <a href="http://gravatar.com" target="_blank">Gravatar</a>
+                        in case you have one.
+                    </p>
+                    <p>Just type your email and press `enter`.</p>
+                </div>
             </div>
         </div>
-        <div class="js-sidebar-content sidebar__body l-flex l-flex--vertical l-flex--space-between l-flex--scrollable" data-sidebar-content="about" style="">
-            <div class="sidebar__header">About Team Timer</div>
-            <div class="js-switcher" data-content-active="how-it-works">
-                <div>
-                    <div class="sidebar__switcher"><span data-switcher-nav="how-it-works" onclick="toggleSwitcher('how-it-works')">How it works</span><span data-switcher-nav="why" onclick="toggleSwitcher('why')">Why?</span></div>
-                </div>
-                <div class="sidebar__paragraph sidebar__paragraph--text" data-switcher-content="how-it-works">
-                    <div class="sidebar__heading">Hey!</div>
-                    <div class="sidebar__subheading">Welcome to Team Timer!</div>
-                    <div class="sidebar__divisor"></div>Here you'll find a simple guide for running Team Timers with your team:
-                    <br>
-                    <br>
-                    <div class="sidebar__item">Choose a task you'd like to get done with your team. It can be a Status meeting, Brainstorming session or anything else you want to do together.
-                        <br>
-                        <br>
-                    </div>
-                    <div class="sidebar__item">Create a room and share the link with your teammates, so that everyone can see the timer.
-                        <br>
-                        <br>
-                    </div>
-                    <div class="sidebar__item">Start the timer for 25 min (25 min is the traditional Pomodoro Technique, but you can set the timer to whatever works for you).
-                        <br>
-                        <br>
-                    </div>
-                    <div class="sidebar__item">Work focused on that task until the clock rings. That means no calls from your mom, whatsapping your crush or checking your facebook timeline again. There will be a time for that.
-                        <br>
-                        <br>
-                    </div>
-                    <div class="sidebar__item">After that, take a short break. Then you can check facebook and do other important things like go to the bathroom. After 4 Team Timers we recommend a longer break.
-                        <br>
-                        <br>
-                    </div>
-                    <div class="sidebar__item">Repeat until you are done.
-                        <br>
-                        <br>
-                    </div>
-                    <div class="sidebar__item">Great! That's everything you need to know to run more productive meetings!
-                        <br>
-                        <br>
-                    </div>
-                </div>
-                <div class="sidebar__paragraph sidebar__paragraph--text" data-switcher-content="why">We believe meetings should be fun. We believe collaborating we can get further. We believe getting things done is the best motivation booster, and, we believe having fun is essential for any workplace, specially when your workplace is not just the office anymore.
-                    <br>
-                    <br> That is why we created Team Timer, a tool where you create a timer and share it with your team members. Then you are ready to have more productive meetings from anywhere. Let the time tracking for us and spend more time doing!
-                    <br>
-                    <br> Collaborate, have fun and get things done with Team Timer.</div>
-            </div>
-        </div>
-
-        <div class="js-sidebar-content sidebar__body l-flex l-flex--vertical l-flex--space-between l-flex--scrollable" data-sidebar-content="feedback" style="">
+        <div class="js-sidebar-content sidebar__body l-flex l-flex--vertical l-flex--space-between l-flex--scrollable" data-sidebar-content="feedback">
             <div class="sidebar__header">Send Feedback</div>
-            <div class="sidebar__paragraph sidebar__paragraph--text">Help Team Timer by sharing your input — questions, suggestions, bug reports and feature requests are much appreciated and will help us to improve this little bird.</div>
+            <div class="sidebar__paragraph sidebar__paragraph--text">Help Cuckoo by sharing your input — questions, suggestions, bug reports and feature requests are much appreciated and will help us to improve this little bird.</div>
             <form id="js-feedback">
                 <input class="sidebar__input js-username" type="text" name="name" placeholder="Your Name">
                 <input class="sidebar__input js-email" type="email" name="_replyto" placeholder="your@email.com">
-                <textarea class="sidebar__input js-feedback-text" type="text" name="feedback" placeholder="Dear Team Timer...I have something to tell you." rows="8"></textarea>
+                <textarea class="sidebar__input js-feedback-text" type="text" name="feedback" placeholder="Dear Cuckoo...I have something to tell you." rows="8"></textarea>
                 <input class="sidebar__input sidebar__input--submit" type="submit" value="SEND">
             </form>
             <div class="sidebar__paragraph" id="js-feedback-form-response"></div>
+            <div class="sidebar__divisor"></div>
+            <div class="sidebar__paragraph sidebar__paragraph--text">
+                Make sure you follow Cuckoo on <a href="https://twitter.com/cuckooteam" target="_blank">Twitter</a>
+                and on <a href="https://www.facebook.com/cuckooteam/" target="_blank">Facebook</a>
+                for updates.
             </div>
         </div>
+        <div class="js-sidebar-content sidebar__body l-flex l-flex--vertical l-flex--space-between l-flex--scrollable" data-sidebar-content="about">
+            <div class="sidebar__header">About Cuckoo</div>
+            <div class="js-switcher" data-content-active="how-it-works">
+                <div>
+                    <div class="sidebar__switcher">
+                        <span data-switcher-nav="how-it-works" onclick="toggleSwitcher('how-it-works')">How it works</span>
+                        <span data-switcher-nav="why" onclick="toggleSwitcher('why')">Why?</span>
+                    </div>
+                </div>
+                <div class="sidebar__paragraph sidebar__paragraph--text" data-switcher-content="how-it-works">
+                    <div class="sidebar__heading">Hey!</div>
+                    <div class="sidebar__subheading">Welcome to Cuckoo!</div>
+                    <div class="sidebar__divisor"></div>
+                    Here you'll find a simple guide for running cuckoos with your team: <br>
+                    <br>
+                    <div class="sidebar__item">
+                        Choose a task you'd like to get done with your team. It can be a Status meeting, Brainstorming session or anything else you want to do together. <br>
+                        <br>
+                    </div>
+                    <div class="sidebar__item">
+                        Create a room and share the link with your teammates, so that everyone can see the timer. <br>
+                        <br>
+                    </div>
+                    <div class="sidebar__item">
+                        Start the timer for 25 min (25 min is the traditional Pomodoro Technique, but you can set the timer to whatever works for you). <br>
+                        <br>
+                    </div>
+                    <div class="sidebar__item">
+                        Work focused on that task until the clock rings. That means no calls from your mom, whatsapping your crush or checking your facebook timeline again. There will be a time for that. <br>
+                        <br>
+                    </div>
+                    <div class="sidebar__item">
+                        After that, take a short break. Then you can check facebook and do other important things like go to the bathroom. After 4 cuckoos we recommend a longer break. <br>
+                        <br>
+                    </div>
+                    <div class="sidebar__item">
+                        Repeat until you are done. <br>
+                        <br>
+                    </div>
+                    <div class="sidebar__item">
+                        Great! That's everything you need to know to run more productive meetings! <br>
+                        <br>
+                    </div>
+                </div>
+                <div class="sidebar__paragraph sidebar__paragraph--text" data-switcher-content="why">
+                    We believe meetings should be fun. We believe collaborating we can get further. We believe getting things done is the best motivation booster, and, we believe having fun is essential for any workplace, specially when your workplace is not just the office anymore. <br>
+                    <br>
+                    That is why we created Cuckoo, a tool where you create a timer and share it with your team members. Then you are ready to have more productive meetings from anywhere. Let the time tracking for us and spend more time doing! <br>
+                    <br>Collaborate, have fun and get things done with Cuckoo.
+                </div>
+            </div>
+        </div>
+        <div class="sidebar__body sidebar__noflex">
+            <a class="btn btn--sidebar" href="https://startae.com/?utm_source=cuckoo&amp;utm_medium=page_footer&amp;utm_content=site_link" target="_new">Meet the creators</a>
+            <a class="btn btn--sidebar" href="https://www.notion.so/startae/Cuckoo-wants-to-live-in-your-mac-6ab25ad7e9b9448282477dade167950f" target="_new">Try the macOS app!</a>
+        </div>
+    </div>
 </div>
-</body>
-
-<script src="js/cuckooVendor.js"></script>
-
-<script src="js/cuckoo.js"></script>
-<script src="js/analytics.js"></script>
-<script src="js/socket.io.js"></script>
-<script src="js/custom.js"></script>
-<!--<script>
-    connect();
-</script>-->
-
-</html>
+<script type="text/javascript" src="js/socket.io.js"></script>
+<script type="text/javascript" src="js/cuckooVendor.js" defer="defer"></script>
+<script type="text/javascript" src="js/cuckoo.js" defer="defer"></script>
+<!--[if lt IE 9]>
+<script src="//cdnjs.cloudflare.com/ajax/libs/nwmatcher/1.3.6/nwmatcher.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
+<![endif]-->
+</body></html>
