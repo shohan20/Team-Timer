@@ -123,6 +123,7 @@ function generateBubbles(e) {
             })
         }, 40),
         $(".js-bubble-play").on("click", function() {
+            console.log("clickeddd");
             duration = $(this).attr("data-duration"),
                 isNaN(duration) ? skipSessionType() : timerStart(parseInt(duration))
         });
@@ -163,10 +164,16 @@ function joinCuckoo() {
     });
 }
 function timerStart(e) {
-    socket.emit("start timer", e)
+    console.log('timerStart '+ e);
+    $('.js-bubble-container').hide();
+    $('.timer').css('transform', 'translate(-50%, -50%)');
+    //socket.emit("start timer", e)
 }
 function timerAction(e) {
-    socket.emit(e + " timer")
+
+    //socket.emit(e + " timer");
+    $('.link-events').show();
+    $('.link-event--pause').hide();
 }
 function removeSession(e) {
     var t = $(e).parents(".js-sessions").attr("data-session-type")
