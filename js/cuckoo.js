@@ -163,18 +163,69 @@ function joinCuckoo() {
 
     });
 }
+
+var timeinterval;
+var timeRemain=0;
+var baseTime=0;
+
 function timerStart(e) {
     console.log('timerStart '+ e);
     $('.js-bubble-container').hide();
     $('.timer').css('transform', 'translate(-50%, -50%)');
-    //socket.emit("start timer", e)
-}
-function timerAction(e) {
 
-    //socket.emit(e + " timer");
-    $('.link-events').show();
-    $('.link-event--pause').hide();
+    //Math.parseInt(e);
+
+    timeRemain=parseInt(e)*60;
+    baseTime= timeRemain;
+
+    updateClock();
+    timeinterval = setInterval(updateClock,1000);
 }
+
+function updateClock(){
+
+    timeRemain--;
+
+    var min= Math.floor(timeRemain/60);
+    var sec= timeRemain%60;
+
+    var showSec=("0"+sec).slice(-2);
+
+    document.getElementById('clock').innerHTML=min+":"+showSec;
+
+    if(timeRemain<=0){
+        clearInterval(timeinterval);
+    }
+}
+
+function timerAction(e) {
+    //console.log("pause clicked");
+    //socket.emit(e + " timer");
+
+    if(e=='pause'){
+        $('.link-events').show();
+        $('.link-event--pause').hide();
+        clearInterval(timeinterval);
+    } else if(e=='play'){
+        $('.link-events').hide();
+        $('.link-event--pause').show();
+        timeinterval = setInterval(updateClock,1000);
+    } else if(e=='reset'){
+        $('.link-events').hide();
+        $('.link-event--pause').show();
+        timeRemain= baseTime;
+        updateClock();
+        timeinterval = setInterval(updateClock,1000);
+    } else if(e=='stop'){
+
+        $('.timer').css('transform', 'translate(-200%, -200%)');
+        $('.js-bubble-container').show();
+    }
+
+
+
+}
+
 function removeSession(e) {
     var t = $(e).parents(".js-sessions").attr("data-session-type")
         , a = parseInt($(e).parent().text());

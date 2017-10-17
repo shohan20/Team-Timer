@@ -87,12 +87,12 @@
         </div>
 
         <div class="js-timer-purpose timer__purpose"></div>
-        <span class="js-timer timer__display">00:00</span>
+        <span id="clock" class="js-timer timer__display">00:00</span>
         <div class="show-shortcuts">
-            <a class="js-timer-control link-event link-event--play hide-on-pause" href="javascript:;" onclick="timerAction('play/pause/unpause')" data-shortcut="space">Start</a>
-            <a class="js-timer-control link-event link-event--pause hide-on-pause" href="javascript:;" onclick="timerAction('play/pause/unpause')" data-shortcut="space">Pause</a>
+            <a class="js-timer-control link-event link-event--play hide-on-pause" href="javascript:;" onclick="timerAction('play')" data-shortcut="space">Start</a>
+            <a class="js-timer-control link-event link-event--pause hide-on-pause" href="javascript:;" onclick="timerAction('pause')" data-shortcut="space">Pause</a>
             <div class="link-events">
-                <a class="js-timer-control link-event link-event--paused" href="javascript:;" onclick="timerAction('play/pause/unpause')" data-shortcut="space">Resume</a>
+                <a class="js-timer-control link-event link-event--paused" href="javascript:;" onclick="timerAction('play')" data-shortcut="space">Resume</a>
                 <a class="js-timer-control link-event link-event--paused" href="javascript:;" onclick="timerAction('reset')" data-shortcut="r">Reset</a>
                 <a class="js-timer-control link-event link-event--paused" href="javascript:;" onclick="timerAction('stop')" data-shortcut="esc">Stop</a>
             </div>
