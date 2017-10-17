@@ -238,7 +238,7 @@ function removeSession(e) {
     var t = $(e).parents(".js-sessions").attr("data-session-type")
         , a = parseInt($(e).parent().text());
     //socket.emit("remove session", t, a)
-    bubbles.sessions.currentType=t;
+
     if(bubbles.sessions.currentType=="work")
         bubbles.sessions.work.durations.pop();
     else
@@ -264,6 +264,8 @@ function removeSession(e) {
     if(bubbles.sessions.currentType==t)
         generateBubbles(bubbles);
 
+
+
 }
 function removeRoadmapSession(e) {
     e = $(e).parents(".roadmap__item"),
@@ -271,13 +273,21 @@ function removeRoadmapSession(e) {
 }
 function skipSessionType() {
     //socket.emit("skip session")
+    var index = bubbles.sessions.work.durations.indexOf("HAVE A-BREAK");
+    if (index > -1) {
+        bubbles.sessions.work.durations.splice(index,1);
+    }
+    var index = bubbles.sessions.breakTime.durations.indexOf("HAVE A-BREAK");
+    if (index > -1) {
+        bubbles.sessions.work.durations.splice(index,1);
+    }
     if(bubbles.sessions.currentType=='work'){
-        bubbles.sessions.work.durations.pop();
+
         bubbles.sessions.currentType='breakTime';
         bubbles.flags._isBreakTime=true;
     }
     else {
-        bubbles.sessions.breakTime.durations.pop();
+
         bubbles.sessions.currentType = 'work';
         bubbles.flags._isBreakTime=false;
     }
