@@ -277,7 +277,7 @@ function skipSessionType() {
     if (index > -1) {
         bubbles.sessions.work.durations.splice(index,1);
     }
-    var index = bubbles.sessions.breakTime.durations.indexOf("HAVE A-BREAK");
+    var index = bubbles.sessions.breakTime.durations.indexOf("SKIP-BREAK");
     if (index > -1) {
         bubbles.sessions.work.durations.splice(index,1);
     }
