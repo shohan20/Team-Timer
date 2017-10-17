@@ -1,3 +1,26 @@
+var bubbles={
+    fullname: "masum",
+    id: "A_A5zxyG7BSiGAkxAAFN",
+    initials: "M",
+    sessions : {
+        breakTime: {
+            durations: [10, 15, 25],
+            streak: 0,
+            sum: 0
+        },
+        currentType: "work",
+        work: {
+            durations: [5, 10, 15, 20, 25],
+            maxStreak: 1500,
+            streak: 0,
+            sum: 0
+        }
+    },
+    flags: {
+        _isBreakTime: false
+    }
+
+};
 function generateBubbles(e) {
     console.log('haha');
     function t(e) {
@@ -124,8 +147,11 @@ function generateBubbles(e) {
         }, 40),
         $(".js-bubble-play").on("click", function() {
             console.log("clickeddd");
+
             duration = $(this).attr("data-duration"),
                 isNaN(duration) ? skipSessionType() : timerStart(parseInt(duration))
+
+
         });
     var g;
     window.onresize = function() {
@@ -139,29 +165,11 @@ function joinCuckoo() {
     /*var e = Cookies.getJSON("cuckooUser");
     e && e.fullname ? (socket.emit("update user", e.fullname),
     e.email && socket.emit("change email", e.email)) : $(".js-page--name").fadeIn()*/
-    generateBubbles({
-        fullname: "masum",
-        id: "A_A5zxyG7BSiGAkxAAFN",
-        initials: "M",
-        sessions : {
-            breakTime: {
-                durations: [10, 15, 25],
-                streak: 0,
-                sum: 0
-            },
-            currentType: "work",
-            work: {
-                durations: [5, 10, 15, 20, 25],
-                maxStreak: 1500,
-                streak: 0,
-                sum: 0
-            }
-        },
-        flags: {
-            _isBreakTime: false
-        }
+    updateSettings(bubbles);
+    updateSessions(bubbles);
+    updateStates(bubbles);
 
-    });
+
 }
 
 var timeinterval;
@@ -229,14 +237,53 @@ function timerAction(e) {
 function removeSession(e) {
     var t = $(e).parents(".js-sessions").attr("data-session-type")
         , a = parseInt($(e).parent().text());
-    socket.emit("remove session", t, a)
+    //socket.emit("remove session", t, a)
+    bubbles.sessions.currentType=t;
+    if(bubbles.sessions.currentType=="work")
+        bubbles.sessions.work.durations.pop();
+    else
+        bubbles.sessions.breakTime.durations.pop();
+    if(t=="work") {
+
+        var index = bubbles.sessions.work.durations.indexOf(+a);
+        if (index > -1) {
+            bubbles.sessions.work.durations.splice(index,1);
+        }
+    }
+    else {
+
+        var index = bubbles.sessions.breakTime.durations.indexOf(+a);
+        if (index > -1) {
+            bubbles.sessions.breakTime.durations.splice(index,1);
+        }
+    }
+
+    console.log(bubbles);
+    updateSettings(bubbles);
+
+    if(bubbles.sessions.currentType==t)
+        generateBubbles(bubbles);
+
 }
 function removeRoadmapSession(e) {
     e = $(e).parents(".roadmap__item"),
         socket.emit("delete roadmap", e.attr("id"))
 }
 function skipSessionType() {
-    socket.emit("skip session")
+    //socket.emit("skip session")
+    if(bubbles.sessions.currentType=='work'){
+        bubbles.sessions.work.durations.pop();
+        bubbles.sessions.currentType='breakTime';
+        bubbles.flags._isBreakTime=true;
+    }
+    else {
+        bubbles.sessions.breakTime.durations.pop();
+        bubbles.sessions.currentType = 'work';
+        bubbles.flags._isBreakTime=false;
+    }
+
+    updateSessions(bubbles);
+    updateStates(bubbles);
 }
 function presetSessions(e) {
     socket.emit("preset session", e)
@@ -324,8 +371,9 @@ function updateStates(e) {
             t.remove("isBreakTime")),
         e.flags._isRoadmapActive ? t.add("isRoadmapActive") : t.remove("isRoadmapActive"),
         e.flags._isMessageOnly ? t.add("isMessageOnly") : t.remove("isMessageOnly"),
-        $(".js-timer-purpose").html(e.sessionPurpose),
-        updateTimer(e.timer)
+        $(".js-timer-purpose").html(e.sessionPurpose);
+        if(e.flags._isTimerActive)
+            updateTimer(e.timer)
 }
 function updateSettings(e) {
     function t(e, t) {
@@ -419,8 +467,32 @@ Piecon.setOptions({
         var t = $(this).find("input")
             , a = t.val()
             , s = $(this).attr("data-session-type");
-        socket.emit("add session", s, a),
-            t.val("")
+        //socket.emit("add session", s, a),
+           if(bubbles.sessions.currentType=="work")
+            bubbles.sessions.work.durations.pop();
+           else
+            bubbles.sessions.breakTime.durations.pop();
+
+           if(s=="work") {
+
+                var index = bubbles.sessions.work.durations.indexOf(+a);
+                if (index <= -1) {
+                    bubbles.sessions.work.durations.push(+a);
+                }
+            }
+            else {
+
+                var index = bubbles.sessions.breakTime.durations.indexOf(+a);
+                if (index <= -1) {
+                    bubbles.sessions.breakTime.durations.push(+a);
+                }
+            }
+            t.val("");
+            console.log(bubbles);
+            updateSettings(bubbles);
+        if(bubbles.sessions.currentType==s)
+            generateBubbles(bubbles);
+
     }),
     $(".js-add-roadmap-session").submit(function(e) {
         e.preventDefault();

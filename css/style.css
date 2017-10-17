@@ -497,7 +497,7 @@ dt {
 .btn--primary:hover,
 .btn--primary:active,
 .btn--primary:focus {
-    border-color: #5d1eb2;
+    border-color: #5d1eb2 ;
     color: #5d1eb2
 }
 .btn--clipboard {
@@ -1530,6 +1530,23 @@ body.timerIsPaused .progress-bar {
     text-align: right;
     padding-bottom: 0
 }
+
+.sidebar-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 280px;
+    background: inherit;
+    box-shadow: inset 0 0 0 50vw rgba(0, 0, 0, 0.08), 0 -1px 100px 200vw transparent;
+    font-weight: 100;
+    color: #fff;
+    transition: .4s cubic-bezier(0.38, 1.62, 0.61, 1);
+    z-index: 1;
+    text-align: center;
+    padding-right: 5px
+}
+
 .sidebar {
     position: absolute;
     left: 100%;
