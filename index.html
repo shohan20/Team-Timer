@@ -4,6 +4,7 @@
     <title>Join this Team Timer!</title>
 
     <link rel="stylesheet" href="css/style.css" media="all">
+    <link rel="stylesheet" href="css/github.css" media="all">
     <link rel="stylesheet" href="css/bootstrap.min.css" media="all">
 
     <meta charset="utf-8">
@@ -92,7 +93,7 @@
     <div class="timer timer--clock">
 
         <div class="meha-pet">
-            <img src="image/icon--about.svg" alt="">
+            <img src="image/anim/cat_move_ball.gif" alt="" width="200">
         </div>
 
         <div class="js-timer-purpose timer__purpose"></div>
@@ -111,13 +112,48 @@
     <div class="team">
         <div class="team__list">
             <span class="js-team__list">
-                <div class="team__add-member">
+                <div class="team__add-member" style="background: url(image/icon--history.svg)  no-repeat center;">
                     <input class="js-copy-clipboard js-checkbox" type="checkbox" data-clipboard-action="copy" data-clipboard-target="#js-content-clipboard">
                     <div class="share">
-                        <div class="share__title">URL copied!</div>
-                        <div class="share__url">
-                            <input class="input input--clipboard" readonly id="js-content-clipboard" value="https://team-timer.com/ckoSJPLuIch-">
-                            <button class="btn btn--clipboard js-copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#js-content-clipboard">Copy to clipboard</button>
+                        <div class="share__title">Todays' Log</div>
+                        <div class="share__url" style="width: 200px">
+                            <ol>
+                                <li>You did took a break: +5</li>
+                                <li>You skipped a break: -10</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="team__add-member" style="background: url(image/icon--date.svg)no-repeat center;">
+                    <input class="js-copy-clipboard js-checkbox" type="checkbox" data-clipboard-action="copy" data-clipboard-target="#js-content-clipboard">
+                    <div class="share">
+                        <div class="share__title">Month's Data</div>
+                        <div class="share__url" style="width: 400px">
+
+                        <div class = "activity-chart">
+                        <ol class = "days-of-week">
+                          <li>M</li>
+                          <li>W</li>
+                          <li>F</li>
+                        </ol>
+                        <div id = "month" class = "month"></div>
+                        <div id = "days" class = "days"></div>
+                        <div class = "key">
+                        <span>Less</span>
+                        <ul>
+                        <li class = "activity-four"></li>
+                        <li class = "activity-three"></li>
+                        <li class = "activity-two"></li>
+                        <li class = "activity"></li>
+                        <li class = "day-key"></li>
+                        </ul>
+                        <span>More</span>
+                        </div>
+                        </div>
+
+
+
+
                         </div>
                     </div>
                 </div>
@@ -127,57 +163,100 @@
     </div>
     <div class="activity js-activity"></div>
 </div>
-<div class="sidebar-left ">
+<div class="sidebar-left">
     <div class="l-flex l-flex--full-height l-flex--vertical">
-        <div class= "sidebar__body l-flex l-flex--vertical l-flex--space-between l-flex--scrollable" data-sidebar-content="sessions">
-            <div class="sidebar__header">Status</div>
+        <div style="height: 100%" class= "sidebar__body l-flex l-flex--vertical l-flex--space-between l-flex--scrollable" data-sidebar-content="sessions">
+            <div class="sidebar__header" style="text-align: left;">Team</div>
+            <div class="sidebar__paragraph--text">On break: 2</div>
+            <br>
 
             <div>
                 <div class="row">
                     <div class="col-sm-2">
                     <div class="avatar">
-                        <div class="avatar__image" data-fullname="Shohan">
-                            <span data-label="S"></span>
+                        <div class="avatar__image" data-fullname="Shohan Working" style="background: rgba(107, 109, 226, 0.9);">
+                            <span data-label="S" style="color: white;"></span>
                         </div>
 
                     </div>
                     </div>
                     <div class="col-sm-8">
-                        <div class="progress col-sm-12">
-                            <div class="progress-bar " role="progressbar" style="width: 35%; background: purple">
+                        <div class="progress col-sm-12" style="margin-top: 5px; margin-left: 10px;">
+                            <div class="progress-bar " role="progressbar" style="width: 80%; background: rgb(190, 201, 255);">
                                 <span class="sr-only">55% Complete </span>
                             </div>
-                            <div class="progress-bar  progress-bar-striped" role="progressbar" style="width: 20%; background: green">
-                                <span class="sr-only">20% Complete </span>
-                            </div>
-
                         </div>
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-sm-2">
+                    <div class="avatar">
+                        <div class="avatar__image" data-fullname="Masum on Break" style="background: #42a5f0">
+                            <span data-label="M" style="color: white"></span>
+                        </div>
+
+                    </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="progress col-sm-12" style="margin-top: 5px; margin-left: 10px;">
+                            <div class="progress-bar " role="progressbar" style="width: 70%; background: rgb(190, 201, 255);">
+                                <span class="sr-only">70% Complete </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-sm-2">
                         <div class="avatar">
-                            <div class="avatar__image" data-fullname="Azizul">
-                                <span data-label="A"></span>
+                            <div class="avatar__image" data-fullname="Masum on Break" style="background: #42a5f0">
+                                <span data-label="M" style="color: white"></span>
                             </div>
 
                         </div>
                     </div>
                     <div class="col-sm-8">
-                        <div class="progress col-sm-12">
-                            <div class="progress-bar " style="width: 45%; background: purple">
-                                <span class="sr-only">45% Complete </span>
-                            </div>
-                            <div class="progress-bar  progress-bar-striped" style="width: 30%; background: green">
-                                <span class="sr-only">30% Complete </span>
+                        <div class="progress col-sm-12" style="margin-top: 5px; margin-left: 10px;">
+                            <div class="progress-bar " role="progressbar" style="width: 70%; background: rgb(190, 201, 255);">
+                                <span class="sr-only">70% Complete </span>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="avatar">
+                            <div class="avatar__image" data-fullname="Masum on Break" style="background: #42a5f0">
+                                <span data-label="M" style="color: white"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="progress col-sm-12" style="margin-top: 5px; margin-left: 10px;">
+                            <div class="progress-bar " role="progressbar" style="width: 70%; background: rgb(190, 201, 255);">
+                                <span class="sr-only">70% Complete </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
+            <div class="sidebar__body sidebar__noflex" style="bottom: 0px;">
+                Your Pet
+                <img src="image/anim/cat_dance2.gif" width="100">
+                <div class="row">
+                    <div class="progress col-sm-12" style="margin-top: 5px; margin-left: 10px;">
+                        <div class="progress-bar " role="progressbar" style="width: 80%; background: rgb(190, 201, 255);">
+                            <span class="sr-only">55% Complete </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -321,6 +400,8 @@
 <script type="text/javascript" src="js/cuckoo.js" defer="defer"></script>
 
 <script src="js/bootstrap.min.js"></script>
+<script src="js/moment.js"></script>
+<script src="js/github.js"></script>
 <!--[if lt IE 9]>
 <![endif]-->
 </body></html>

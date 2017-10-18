@@ -2106,7 +2106,7 @@ form+.sidebar__paragraph {
 }
 .team__add-member:after {
     content: '';
-    background: url(../image/icon--add-member.svg) no-repeat center;
+    /*background: url(../image/icon--add-member.svg) no-repeat center;*/
     background-size: 16px 16px;
     width: 20px;
     height: 20px;
