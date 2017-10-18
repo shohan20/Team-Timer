@@ -268,9 +268,10 @@ function removeSession(e) {
 
 }
 function removeRoadmapSession(e) {
-    e = $(e).parents(".roadmap__item"),
-        socket.emit("delete roadmap", e.attr("id"))
+  //  e = $(e).parents(".roadmap__item"),
+    //    socket.emit("delete roadmap", e.attr("id"))
 }
+
 function skipSessionType() {
     //socket.emit("skip session")
     var index = bubbles.sessions.work.durations.indexOf("HAVE A-BREAK");
@@ -295,17 +296,20 @@ function skipSessionType() {
     updateSessions(bubbles);
     updateStates(bubbles);
 }
+
 function presetSessions(e) {
-    socket.emit("preset session", e)
+    //socket.emit("preset session", e)
 }
+
 function activateDeactivateRoadmap() {
-    socket.emit("activate/deactivate roadmap")
+  //  socket.emit("activate/deactivate roadmap")
 }
+
 function createRoadmapSession(e) {
-    socket.emit("create roadmap", e)
+ //   socket.emit("create roadmap", e)
 }
 function clearRoadmap() {
-    socket.emit("clear roadmap")
+ //   socket.emit("clear roadmap")
 }
 function changePieconColor(e) {
     var t;
@@ -316,6 +320,7 @@ function changePieconColor(e) {
             background: t
         })
 }
+
 function toggleSidebar(e) {
     $(".js-sidebar-content").hide(),
         $(".js-sidebar-content[data-sidebar-content=" + e + "]").show();
@@ -338,9 +343,11 @@ function updateTimer(e) {
             updateTitleBar(e)),
         updateRoadmapProgress(e.roadmap)
 }
+
 function updateTitleBar(e) {
     e.roadmap ? document.title = e.currentFormatted + " - " + e.roadmap.sessionPurpose : document.title = e.currentFormatted
 }
+
 function updateActivity(e) {
     var t = e.activity
         , a = $(".js-activity");
@@ -352,6 +359,7 @@ function updateActivity(e) {
             a.append(o)
     }
 }
+
 function updateRoadmap(e) {
     var t = $(".js-roadmaps");
     t.empty(),
@@ -362,6 +370,7 @@ function updateRoadmap(e) {
                 t.append(a)
         })
 }
+
 function updateRoadmapProgress(e) {
     e ? ($(".js-roadmap-eta-progress").width(e.currentProgress + "%"),
         $(".js-roadmap-eta-progress").attr("data-current", e.currentFormatted),
@@ -369,6 +378,7 @@ function updateRoadmapProgress(e) {
         $(".js-roadmap-eta-progress").removeAttr("data-current"),
         $(".js-roadmap-eta-remaining").text("--:--"))
 }
+
 function updateStates(e) {
     var t = document.body.classList;
     e.flags._isTimerPaused ? t.add("timerIsPaused") : t.remove("timerIsPaused"),
@@ -385,6 +395,7 @@ function updateStates(e) {
         if(e.flags._isTimerActive)
             updateTimer(e.timer)
 }
+
 function updateSettings(e) {
     function t(e, t) {
         var s = $(".js-sessions[data-session-type=" + t + "]");
@@ -399,9 +410,11 @@ function updateSettings(e) {
     t(e.sessions.work.durations, "work"),
         t(e.sessions.breakTime.durations, "breakTime")
 }
+
 function updateSessions(e) {
     e.flags._isRoadmapActive || generateBubbles(e)
 }
+
 function updateUsers(e) {
     var t = $(".js-team__list")
         , a = $(".js-team__info");
@@ -412,6 +425,7 @@ function updateUsers(e) {
             t.prepend(createAvatarElement(e))
         })
 }
+
 function updateUser(e) {
     Cookies.set("cuckooUser", e, {
         expires: 365
@@ -422,6 +436,7 @@ function updateUser(e) {
         $(".js-avatar").empty(),
         $(".js-avatar").prepend(createAvatarElement(e))
 }
+
 function createAvatarElement(e) {
     var t = $('<div class="avatar"></div>')
         , a = $('<div class="avatar__image"></div>')
@@ -438,19 +453,19 @@ function createAvatarElement(e) {
         t.append(a),
         t
 }
+
 function dismissBubbles() {
     "undefined" != typeof force && -.5 !== force.gravity() && force.gravity(-.5).charge(10).start()
 }
-function connect() {
-    var e = window.location.pathname;
-    return socket = io(e),
-        socket.connected
-}
+
+
+
 var clipboard = function() {
     var e = $("#js-content-clipboard");
     return 0 !== e.length && e.attr("size", e.val().length - 2),
         new Clipboard(".js-copy-clipboard")
 }();
+
 Piecon.setOptions({
     color: "#6B6DE2",
     background: "#fff",
@@ -460,17 +475,17 @@ Piecon.setOptions({
     $(".js-join-cuckoo-form").submit(function(e) {
         e.preventDefault();
         var t = $("#username").val();
-        socket.emit("update user", t)
+     //   socket.emit("update user", t)
     }),
     $(".js-change-username-form").submit(function(e) {
         e.preventDefault();
         var t = $(".js-username").val();
-        socket.emit("change username", t)
+     //   socket.emit("change username", t)
     }),
     $(".js-change-email-form").submit(function(e) {
         e.preventDefault();
         var t = $(".js-email").val();
-        socket.emit("change email", t)
+    //    socket.emit("change email", t)
     }),
     $(".js-add-session-form").submit(function(e) {
         e.preventDefault();
@@ -532,11 +547,11 @@ Piecon.setOptions({
         Sounds.soundCuckooMouseOver.play()
     });
 var Notifications = function() {
-    var e, t = window.Notify.default, a = new t("Cuckoo!",{
+    var e, t = window.Notify.default, a = new t("Team!",{
         body: "Time to get some rest!",
         icon: "images/desktop-icons/icon-desktop-notification-start-break.png",
         closeOnClick: !0
-    }), s = new t("Cuckoo!",{
+    }), s = new t("Team!",{
         body: "Time to make something great!",
         icon: "images/desktop-icons/icon-desktop-notification-start-work.png",
         closeOnClick: !0
@@ -569,10 +584,12 @@ var Notifications = function() {
         })
     }
 };
+
 $(document).click(function(e) {
     $(e.target).closest(".js-checkbox").length || $(".js-checkbox").prop("checked", !1),
     $(e.target).closest(".js-sidebar").length || document.body.classList.remove("isSidebarOpened")
 });
+
 var Sounds = {
     soundCuckooBreakEnd: new buzz.sound("https://cuckoo.team/sounds/cuckoo-break-end.wav",{
         preload: !0
@@ -590,39 +607,5 @@ var Sounds = {
 Shortcut.init(),
     Notifications.verifyPermission(),
     FastClick.attach(document.body),
-    connect(),
-    joinCuckoo(),
-    socket.on("ping", function() {
-        socket.emit("pong")
-    }),
-    socket.on("update timer", function(e) {
-        updateTimer(e)
-    }),
-    socket.on("finish timer", function(e) {
-        Notifications.cuckooNotify(e),
-            updateCuckoo(e)
-    }),
-    socket.on("update user", function(e) {
-        updateUser(e)
-    }),
-    socket.on("update users", function(e) {
-        updateUsers(e)
-    }),
-    socket.on("update sessions", function(e) {
-        updateSessions(e)
-    }),
-    socket.on("update settings", function(e) {
-        updateCuckoo(e)
-    }),
-    socket.on("update activity", function(e) {
-        updateActivity(e)
-    }),
-    socket.on("validation error", function(e) {
-        Notifications.inAppNotification(e, 3)
-    }),
-    socket.on("user joined", function() {
-        Sounds.soundCuckooMemberJoined.play()
-    }),
-    socket.on("update roadmap", function(e) {
-        updateRoadmap(e)
-    });
+    joinCuckoo();
+
