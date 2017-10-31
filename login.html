@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>TeamTimer-Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <style>
+        html
+        {
+            font-size: 100%;
+            background-size: 100% 100%;
+        }
+        body {
+            background: #6b6de2;
+        }
+
+    </style>
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
+    <script>
+        $(document).ready(function(){
+
+            $.ajax({
+                type: "POST",
+                url: "php/checkNewReg.php",
+                success: function(response){
+                    if(response=="true"){
+                        swal("Successful", "Your account has been created successfully. Login!", "success");
+                    }
+
+
+                }
+            });
+
+            $(document).on("keyup","input[name='repass']",function(event){
+
+                var realpass=document.getElementById("rpass").value;
+
+                if($(this).val()==realpass){
+                    if(!$('span#retypepass').hasClass('glyphicon-ok'))
+                        $('span#retypepass').addClass('glyphicon-ok');
+                }
+                else{
+                    if($('span#retypepass').hasClass('glyphicon-ok'))
+                        $('span#retypepass').removeClass('glyphicon-ok');
+                }
+            });
+
+
+
+            $(document).on("click","input[name='lsubmit']",function(event){
+                $.ajax({
+                    type: "POST",
+                    url: "php/loginProcess.php",
+                    data    : {email: $('#lemail').val(),password: $('#lpassword').val()},
+                    success: function(response){
+                        if(response=="true"){
+                            window.location = ".";
+                        }
+                        else
+                            swal("Nope", "Incorrect Information. Try Again!", "error");
+                    }
+                });
+            });
+
+
+        });
+
+        function funcreg(){
+            if($('span#retypepass').hasClass('glyphicon-ok')){
+                return true;
+            }
+            else
+                return false;
+        }
+        function forgotPassCon() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    if(this.responseText!="false"){
+                        //alert("sent");
+                        swal("Sent", "A mail has been sent", "success");
+
+                        // window.location="../login/login.html";
+                    }
+                    else
+                    {
+
+                        swal("Nope", "You aren't registered", "error");
+                    }
+                }
+            };
+            xhttp.open("POST", "php/forgetProcess.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("email="+document.getElementById("email").value);
+        }
+    </script>
+</head>
+
+<body>
+<div class="container" >
+
+    <div class="center login btn-group well " >
+        <h3 style="text-align: center; ">Team Timer</h3>
+        <p>
+            <label>Email:</label>
+            <input type="text" name="email" id="lemail" style=" width: 100%;padding: 10px 20px; margin: 8px 0; display: inline-block; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" placeholder="Enter email..."/>
+        </p>
+        <p>
+            <label>Password:</label>
+            <input type="password" name="password" id="lpassword" placeholder="Enter password..."/>
+        </p>
+        <p>
+            <input type="submit" name="lsubmit" value="Login"/>
+        <p type="register">Not register?
+            <span id="account" type="account">Create an account</span><br>
+            <span id="forget" type="account"> Forgot your password?</span></p>
+
+        </p>
+
+    </div>
+
+    <div class="center register btn-group well">
+        <form action="php/registrationProcess.php" method="POST" >
+            <h3 style="text-align: center; ">Team Timer</h3>
+            <p>
+            <div class="form-group has-success has-feedback">
+                <label>Name:</label>
+                <input type="text" name="username" id="username" required data-placement="top" title="User Name"  placeholder="Enter your name..."/>
+            </div>
+            </p>
+            <p>
+            <div class="form-group has-success has-feedback">
+                <label>Email:</label>
+                <input type="email" name="remail" id="remail" required data-toggle="email" data-placement="top" title="email address"  placeholder="Enter email..."/>
+            </div>
+            </p>
+            <p>
+            <div class="form-group has-success has-feedback">
+                <label>Password:</label>
+                <input type="password" name="password" id="rpass" pattern=".{4,}"   required data-toggle="password" data-placement="top" title="Atleast 4 characters"  placeholder="Choose a password..."/>
+
+            </div>
+            </p>
+
+            <p>
+            <div class="form-group ">
+                <label>Team ID:</label>
+                <input type="text"  id="team-id" name="team-id" required  data-placement="top" title="Enter a Valid Team ID"  placeholder="Enter Team ID..."/>
+
+            </div>
+            </p>
+            <p>
+                <input type="submit" id="rsubmit" name="submit" style="display: block" value="Register"/>
+            <p type="register">Already register?
+                <span id="login" type="account">Login</span><br>
+            </p>
+            </p>
+        </form>
+    </div>
+
+    <div class="center forget  btn-group well">
+        <h3 style="text-align: center; ">Team Timer</h3>
+        <p>
+            <label>Email:</label>
+            <input type="email" name="email" id="email" placeholder="Enter email.."/>
+        </p>
+        <p>
+            <button type="submit" name="submit" onclick="forgotPassCon()">Submit</button>
+        <p type="register"> <span id="flogin" type="account">Login</span></p>
+        </p>
+
+    </div>
+</div>
+
+</body>
+<script src="dist/sweetalert.min.js"></script>
+
+<script src="js/login.js"></script>
+</html>
