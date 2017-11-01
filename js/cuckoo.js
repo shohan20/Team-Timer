@@ -175,6 +175,8 @@ function joinCuckoo() {
 var timeinterval;
 var timeRemain=0;
 var baseTime=0;
+var health=100;
+
 
 function timerStart(e) {
     console.log('timerStart '+ e);
@@ -202,9 +204,11 @@ function updateClock(){
     document.getElementById('clock').innerHTML=min+":"+showSec;
 
     if(timeRemain<=0){
-        console.log("time reamain 0");
+        console.log("time remain 0");
         clearInterval(timeinterval);
 
+
+        setPetHealth(true);
 
         if(bubbles.sessions.currentType=='work'){
 
@@ -250,10 +254,61 @@ function timerAction(e) {
         $('.timer').css('transform', 'translate(-200%, -200%)');
         $('.js-bubble-container').show();
     }
+}
 
 
+
+function getPetHealth() {
+
+    //document.getElementById("pet-health").style.width=health+"%";
+
+
+    $.post("../php/getHealth.php", {
+
+        data: 'none'
+
+    }, function (data) {
+        console.log(data);
+
+        health= parseInt(data);
+
+        document.getElementById("pet-health").style.width=health+"%";
+
+    });
 
 }
+
+getPetHealth();
+
+
+function setPetHealth(pos) {
+
+    var rad=  Math.round(health*10/100);
+
+    if(pos==true){
+        health+=rad;
+    }else{
+        health-=rad;
+    }
+
+    if(health<0){
+        health=0;
+    }
+
+    document.getElementById("pet-health").style.width=health+"%";
+
+    $.post("../php/setHealth.php", {
+
+        health: health
+
+    }, function (data) {
+        console.log(data);
+
+
+    });
+
+}
+
 
 function removeSession(e) {
     var t = $(e).parents(".js-sessions").attr("data-session-type")
@@ -294,6 +349,9 @@ function removeRoadmapSession(e) {
 }
 
 function skipSessionType() {
+
+    setPetHealth(false);
+
     //socket.emit("skip session")
     var index = bubbles.sessions.work.durations.indexOf("HAVE A-BREAK");
     if (index > -1) {
