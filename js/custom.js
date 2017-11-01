@@ -12,4 +12,7 @@ function displayWorks() {
     document.getElementsByClassName('section--index')[0].style.backgroundColor="#6b6de2";
 }
 
-
+$("#rateYo").rateYo({
+    rating: 2,
+    fullStar: true
+  });

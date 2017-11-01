@@ -202,7 +202,26 @@ function updateClock(){
     document.getElementById('clock').innerHTML=min+":"+showSec;
 
     if(timeRemain<=0){
+        console.log("time reamain 0");
         clearInterval(timeinterval);
+
+
+        if(bubbles.sessions.currentType=='work'){
+
+            bubbles.sessions.currentType='breakTime';
+            bubbles.flags._isBreakTime=true;
+        }
+        else {
+
+            bubbles.sessions.currentType = 'work';
+            bubbles.flags._isBreakTime=false;
+        }
+        updateSessions(bubbles);
+        updateStates(bubbles);
+
+
+        $('.timer').css('transform', 'translate(-200%, -200%)');
+        $('.js-bubble-container').show();
     }
 }
 
@@ -217,15 +236,17 @@ function timerAction(e) {
     } else if(e=='play'){
         $('.link-events').hide();
         $('.link-event--pause').show();
+        clearInterval(timeinterval);
         timeinterval = setInterval(updateClock,1000);
     } else if(e=='reset'){
         $('.link-events').hide();
         $('.link-event--pause').show();
         timeRemain= baseTime;
+        clearInterval(timeinterval);
         updateClock();
         timeinterval = setInterval(updateClock,1000);
     } else if(e=='stop'){
-
+        clearInterval(timeinterval);
         $('.timer').css('transform', 'translate(-200%, -200%)');
         $('.js-bubble-container').show();
     }

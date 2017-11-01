@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/style.css" media="all">
     <link rel="stylesheet" href="css/github.css" media="all">
     <link rel="stylesheet" href="css/bootstrap.min.css" media="all">
+    <link rel="stylesheet" href="css/rating.css" media="all">
 
     <meta charset="utf-8">
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
@@ -57,6 +58,42 @@
     <meta name="twitter:title" content="Join this Team Timer!">
     <meta name="twitter:description" content="Create a timer, share it with your team and get ready for more productive meetings.">
     <meta name="twitter:image" content="https://Team Timer.team/images/og_image.png">
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Week', 'Productivity'],
+          ['4w ago',  3.5],
+          ['3w ago',  3.8],
+          ['2w ago',  3.4],
+          ['Current',  3.95]
+        ]);
+
+        var options = {
+          title: 'Productivity History',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
 </head>
 <body>
 <noscript>
@@ -125,38 +162,17 @@
                     </div>
                 </div>
                 <div class="team__add-member" style="background: url(image/icon--date.svg)no-repeat center;">
-                    <input class="js-copy-clipboard js-checkbox" type="checkbox" data-clipboard-action="copy" data-clipboard-target="#js-content-clipboard">
+                <input class="js-copy-clipboard js-checkbox" type="checkbox" data-clipboard-action="copy" data-clipboard-target="#js-content-clipboard">
                     <div class="share">
-                        <div class="share__title">Month's Data</div>
+                        <div class="share__title">Productivity Log</div>
                         <div class="share__url" style="width: 400px">
-
-                        <div class = "activity-chart">
-                        <ol class = "days-of-week">
-                          <li>M</li>
-                          <li>W</li>
-                          <li>F</li>
-                        </ol>
-                        <div id = "month" class = "month"></div>
-                        <div id = "days" class = "days"></div>
-                        <div class = "key">
-                        <span>Less</span>
-                        <ul>
-                        <li class = "activity-four"></li>
-                        <li class = "activity-three"></li>
-                        <li class = "activity-two"></li>
-                        <li class = "activity"></li>
-                        <li class = "day-key"></li>
-                        </ul>
-                        <span>More</span>
-                        </div>
-                        </div>
-
-
-
-
+                            <div id="chart_div"></div>
                         </div>
                     </div>
+                    
                 </div>
+
+                
             </span>
         </div>
         <div class="team__info js-team__info"></div>
@@ -328,13 +344,31 @@
         </div>
         <div class="js-sidebar-content sidebar__body l-flex l-flex--vertical l-flex--space-between l-flex--scrollable" data-sidebar-content="feedback">
             <div class="sidebar__header">Send Feedback</div>
-            <div class="sidebar__paragraph sidebar__paragraph--text">Help Team Timer by sharing your input — questions, suggestions, bug reports and feature requests are much appreciated and will help us to improve this little bird.</div>
-            <form id="js-feedback">
-                <input class="sidebar__input js-username" type="text" name="name" placeholder="Your Name">
-                <input class="sidebar__input js-email" type="email" name="_replyto" placeholder="your@email.com">
-                <textarea class="sidebar__input js-feedback-text" type="text" name="feedback" placeholder="Dear Team Timer...I have something to tell you." rows="8"></textarea>
-                <input class="sidebar__input sidebar__input--submit" type="submit" value="SEND">
+
+            <div class="sidebar__paragraph sidebar__paragraph--text">Send your day to day productivity feedback.</div>
+            <br><br>
+        
+            <form action="php/feedback.php" method="POST">
+                How energetic are you today?
+            <input id="rating-mental" name="mental_health" type="text" class="rating" data-size="xs" >
+            <br>
+
+            How is your physical health today?
+            <input id="rating-physical" name="physical_health" type="text" class="rating" data-size="xs" >
+            <br>
+
+            How productive was your day?
+            <input id="rating-productive" name="productivity" type="text" class="rating" data-size="xs" >
+            <br>
+
+            <button type="submit" name="submit" class="sidebar__input sidebar__input--submit" >Submit</button>
             </form>
+
+            
+            
+
+
+
             <div class="sidebar__paragraph" id="js-feedback-form-response"></div>
             <div class="sidebar__divisor"></div>
 
@@ -401,7 +435,17 @@
 
 <script src="js/bootstrap.min.js"></script>
 <script src="js/moment.js"></script>
-<script src="js/github.js"></script>
+<script src="js/rating.js"></script>
+
+
+
+<script type="text/javascript">
+    // initialize with defaults
+    $("#rating-productive").rating();
+    $("#rating-physical").rating();
+    $("#rating-mental").rating();
+</script>
+
 <!--[if lt IE 9]>
 <![endif]-->
 </body></html>
