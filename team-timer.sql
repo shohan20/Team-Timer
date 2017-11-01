@@ -2,8 +2,8 @@
 -- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 31, 2017 at 05:28 PM
+-- Host: localhost
+-- Generation Time: Nov 01, 2017 at 07:28 পূর্বাহ্ণ
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -19,6 +19,19 @@ SET time_zone = "+00:00";
 --
 -- Database: `team-timer`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `user_id` int(200) NOT NULL,
+  `mental_health` varchar(200) NOT NULL,
+  `physical_health` varchar(200) NOT NULL,
+  `productivity` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
