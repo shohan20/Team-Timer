@@ -256,6 +256,33 @@ function timerAction(e) {
     }
 }
 
+function setHealthGif(h) {
+    console.log(h);
+    var gif = $('#pet-gif');
+    //console.log(gif);
+    if(h>=91) {
+        gif.attr("src", 'image/anim/cat_91_100.gif');
+    }
+    else if(h>=81 && h<=90) {
+        gif.attr("src", 'image/anim/cat_81_90.gif');
+    }
+    else if(h>=71 && h<=80) {
+        gif.attr("src", 'image/anim/cat_71_80.gif');
+    }
+    else if(h>=61 && h<=70) {
+        gif.attr("src", 'image/anim/cat_61_70.gif');
+    }
+    else if(h>=41 && h<=60) {
+        gif.attr("src", 'image/anim/cat_41_60.gif');
+    }
+    else if(h>=21 && h<=40) {
+        gif.attr("src", 'image/anim/cat_21_40.gif');
+    }
+    else {
+        gif.attr("src", 'image/anim/cat_0_20.gif');
+    }
+}
+
 
 
 function getPetHealth() {
@@ -264,16 +291,18 @@ function getPetHealth() {
 
 
     $.post("../php/getHealth.php", {
-
         data: 'none'
-
     }, function (data) {
         console.log(data);
-
         health= parseInt(data);
-
         document.getElementById("pet-health").style.width=health+"%";
+        setHealthGif(health);
 
+    }).fail(function() {
+        //alert( "error" );
+        health= 100;
+        document.getElementById("pet-health").style.width=health+"%";
+        setHealthGif(health);
     });
 
 }
@@ -299,6 +328,7 @@ function setPetHealth(pos) {
         health=100;
     }
     
+    setHealthGif(health);
     document.getElementById("pet-health").style.width=health+"%";
 
     $.post("../php/setHealth.php", {
