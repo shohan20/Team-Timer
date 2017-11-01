@@ -11,5 +11,6 @@ $id=$_SESSION['id'];
 $health =$_POST['health'];
 $connection=serverConnect();
 $stmt = $connection->prepare("update users set health=? WHERE id=?") or die("Failed to query database ".mysqli_error($connection));
-$stmt->bind_param('ss',$id,$health);
+$stmt->bind_param('ss',$health,$id);
 $stmt->execute();
+echo $health;

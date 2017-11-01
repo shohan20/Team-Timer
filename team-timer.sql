@@ -2,8 +2,8 @@
 -- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 01, 2017 at 07:28 পূর্বাহ্ণ
+-- Host: 127.0.0.1
+-- Generation Time: Nov 01, 2017 at 04:16 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -44,15 +44,16 @@ CREATE TABLE `users` (
   `name` varchar(200) NOT NULL,
   `email` varchar(200) NOT NULL,
   `password` varchar(200) NOT NULL,
-  `team_id` varchar(200) NOT NULL
+  `team_id` varchar(200) NOT NULL,
+  `health` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `team_id`) VALUES
-(5, 'shohan', 'shohan.jess@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `team_id`, `health`) VALUES
+(5, 'shohan', 'shohan.jess@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', '1234', 0);
 
 --
 -- Indexes for dumped tables

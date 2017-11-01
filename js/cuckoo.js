@@ -290,10 +290,9 @@ function getPetHealth() {
     //document.getElementById("pet-health").style.width=health+"%";
 
 
-    $.post("../php/getHealth.php", {
+    $.post("php/getHealth.php", {
         data: 'none'
     }, function (data) {
-        console.log(data);
         health= parseInt(data);
         document.getElementById("pet-health").style.width=health+"%";
         setHealthGif(health);
@@ -331,7 +330,7 @@ function setPetHealth(pos) {
     setHealthGif(health);
     document.getElementById("pet-health").style.width=health+"%";
 
-    $.post("../php/setHealth.php", {
+    $.post("php/setHealth.php", {
 
         health: health
 
