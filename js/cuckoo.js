@@ -295,6 +295,10 @@ function setPetHealth(pos) {
         health=0;
     }
 
+    if(health>100){
+        health=100;
+    }
+    
     document.getElementById("pet-health").style.width=health+"%";
 
     $.post("../php/setHealth.php", {
