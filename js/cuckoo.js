@@ -22,7 +22,7 @@ var bubbles={
 
 };
 function generateBubbles(e) {
-    console.log('haha');
+    //console.log('haha');
     function t(e) {
         return function(t) {
             var a = l[t.cluster];
