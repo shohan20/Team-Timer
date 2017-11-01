@@ -176,7 +176,7 @@ var timeinterval;
 var timeRemain=0;
 var baseTime=0;
 var health=100;
-
+var status= "idle";
 
 function timerStart(e) {
     console.log('timerStart '+ e);
@@ -194,6 +194,13 @@ function timerStart(e) {
 
 function updateClock(){
 
+    if(bubbles.sessions.currentType=='work'){
+        status="working";
+    }else {
+        status="on break";
+    }
+
+
     timeRemain--;
 
     var min= Math.floor(timeRemain/60);
@@ -207,6 +214,7 @@ function updateClock(){
         console.log("time remain 0");
         clearInterval(timeinterval);
 
+        status="idle";
 
         setPetHealth(true);
 
@@ -237,11 +245,13 @@ function timerAction(e) {
         $('.link-events').show();
         $('.link-event--pause').hide();
         clearInterval(timeinterval);
+        status="idle";
     } else if(e=='play'){
         $('.link-events').hide();
         $('.link-event--pause').show();
         clearInterval(timeinterval);
         timeinterval = setInterval(updateClock,1000);
+
     } else if(e=='reset'){
         $('.link-events').hide();
         $('.link-event--pause').show();
@@ -250,6 +260,7 @@ function timerAction(e) {
         updateClock();
         timeinterval = setInterval(updateClock,1000);
     } else if(e=='stop'){
+        status="idle";
         clearInterval(timeinterval);
         $('.timer').css('transform', 'translate(-200%, -200%)');
         $('.js-bubble-container').show();
@@ -306,8 +317,59 @@ function getPetHealth() {
 
 }
 
-getPetHealth();
 
+function getTeamStatus() {
+
+    $.post("php/teamStatus.php", {
+
+        status: status
+
+    }, function (data) {
+        console.log(data);
+
+        var people= JSON.parse(data);
+
+        console.log(people);
+
+        var workingColor= "rgba(107, 109, 226, 0.9);";
+        var breakColor= "#42a5f0";
+
+        var toWrite="";
+        var breakCount=0;
+
+        for(var i=0; i<people.length;i++) {
+
+
+            if(people[i][6]=="working"){
+                color=workingColor;
+            }else if(people[i][6]=="on break"){
+                color=breakColor;
+                breakCount++;
+            }else{
+                color="#b2beb5";
+            }
+             toWrite+=
+
+                "<div class=\"row\"> <div class=\"col-sm-2\"> <div class=\"avatar\"> <div class=\"avatar__image\" data-fullname=\"" +
+                people[i][1] + " is " + people[i][6] + "\" style=\"background: " + color + "\">" +
+                "<span data-label=\""+people[i][1].charAt(0)+"\" style=\"color: white;\"></span> </div>" +
+                "</div> </div> <div class=\"col-sm-8\"> <div class=\"progress col-sm-12\" style=\"margin-top: 5px; margin-left: 10px;\">" +
+                "<div class=\"progress-bar \" role=\"progressbar\" style=\"width: " + people[i][5] + "%; background: rgb(190, 201, 255);\">" +
+                "<span class=\"sr-only\">55% Complete </span> </div> </div> </div> </div>";
+        }
+
+        document.getElementById('team-status').innerHTML=toWrite;
+        document.getElementById('break-count').innerHTML="On break: "+breakCount;
+
+    });
+
+}
+
+
+
+getPetHealth();
+getTeamStatus();
+setInterval(getTeamStatus,30000);
 
 function setPetHealth(pos) {
 
