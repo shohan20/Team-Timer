@@ -9,9 +9,9 @@
 session_start();
 include 'serverConnection.php';
 
-//$id=$_SESSION['id'];
+$id=$_SESSION['id'];
 
-$id=6;
+//$id=6;
 
 $status =$_POST['status'];
 $connection=serverConnect();

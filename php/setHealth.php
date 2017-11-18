@@ -7,8 +7,8 @@
  */
 session_start();
 include 'serverConnection.php';
-//$id=$_SESSION['id'];
-$id=6;
+$id=$_SESSION['id'];
+//$id=6;
 
 $health =$_POST['health'];
 $connection=serverConnect();

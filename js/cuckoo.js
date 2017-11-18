@@ -4,13 +4,13 @@ var bubbles={
     initials: "M",
     sessions : {
         breakTime: {
-            durations: [10, 15, 25],
+            durations: [1, 10, 15, 25],
             streak: 0,
             sum: 0
         },
         currentType: "work",
         work: {
-            durations: [5, 10, 15, 20, 25],
+            durations: [1, 5, 10, 15, 20, 25],
             maxStreak: 1500,
             streak: 0,
             sum: 0
@@ -194,6 +194,7 @@ function timerStart(e) {
 
 function updateClock(){
 
+
     if(bubbles.sessions.currentType=='work'){
         status="working";
     }else {
@@ -210,13 +211,27 @@ function updateClock(){
 
     document.getElementById('clock').innerHTML=min+":"+showSec;
 
+    var e={};
+    e.currentFormatted=min+":"+showSec;
+    e.roadmap=true;
+    var pro=Math.round(timeRemain*100/baseTime);
+    Piecon.setProgress(pro);
+
+    updateTitleBar(e);
+
+
+
     if(timeRemain<=0){
+
+        Notifications.cuckooNotify(bubbles);
         console.log("time remain 0");
         clearInterval(timeinterval);
 
         status="idle";
 
         setPetHealth(true);
+
+        document.title="Team Timer";
 
         if(bubbles.sessions.currentType=='work'){
 
@@ -261,6 +276,7 @@ function timerAction(e) {
         timeinterval = setInterval(updateClock,1000);
     } else if(e=='stop'){
         status="idle";
+        document.title="Team Timer";
         clearInterval(timeinterval);
         $('.timer').css('transform', 'translate(-200%, -200%)');
         $('.js-bubble-container').show();
@@ -519,7 +535,7 @@ function updateTimer(e) {
 }
 
 function updateTitleBar(e) {
-    e.roadmap ? document.title = e.currentFormatted + " - " + e.roadmap.sessionPurpose : document.title = e.currentFormatted
+    document.title = e.currentFormatted;
 }
 
 function updateActivity(e) {
@@ -721,13 +737,13 @@ Piecon.setOptions({
         Sounds.soundCuckooMouseOver.play()
     });
 var Notifications = function() {
-    var e, t = window.Notify.default, a = new t("Team!",{
+    var e, t = window.Notify.default, a = new t("Hey you!",{
         body: "Time to get some rest!",
-        icon: "images/desktop-icons/icon-desktop-notification-start-break.png",
+        icon: "image/code.png",
         closeOnClick: !0
     }), s = new t("Team!",{
         body: "Time to make something great!",
-        icon: "images/desktop-icons/icon-desktop-notification-start-work.png",
+        icon: "image/code.png",
         closeOnClick: !0
     });
     return {
@@ -763,6 +779,24 @@ $(document).click(function(e) {
     $(e.target).closest(".js-checkbox").length || $(".js-checkbox").prop("checked", !1),
     $(e.target).closest(".js-sidebar").length || document.body.classList.remove("isSidebarOpened")
 });
+
+function feedback(){
+    var physical_health=document.getElementById('rating-physical').value;
+    var mental_health=document.getElementById('rating-mental').value;
+    var productivity=document.getElementById('rating-productive').value;
+    console.log("dhfj "+productivity);
+    $.post("php/feedback.php", {
+
+        physical_health: physical_health,
+        mental_health: mental_health,
+        productivity: productivity
+
+    }, function (data) {
+        console.log(data);
+
+
+    });
+}
 
 var Sounds = {
     soundCuckooBreakEnd: new buzz.sound("https://cuckoo.team/sounds/cuckoo-break-end.wav",{
