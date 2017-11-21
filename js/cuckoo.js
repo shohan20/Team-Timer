@@ -284,18 +284,18 @@ function timerAction(e) {
     }
 }
 
-var currentPet=1;
+var currentPet=4;
 
 function changePet(num) {
     var gif = $('#choose-pet');
 
     currentPet+=num;
 
-    if(currentPet>3)
+    if(currentPet>4)
         currentPet=1;
 
     if(currentPet<1){
-        currentPet=3;
+        currentPet=4;
     }
 
     gif.attr("src", 'image/anim/pet_'+currentPet+'.gif');
