@@ -15,6 +15,7 @@ var bubbles={
             streak: 0,
             sum: 0
         }
+
     },
     flags: {
         _isBreakTime: false
@@ -281,6 +282,25 @@ function timerAction(e) {
         $('.timer').css('transform', 'translate(-200%, -200%)');
         $('.js-bubble-container').show();
     }
+}
+
+var currentPet=1;
+
+function changePet(num) {
+    var gif = $('#choose-pet');
+
+    currentPet+=num;
+
+    if(currentPet>3)
+        currentPet=1;
+
+    if(currentPet<1){
+        currentPet=3;
+    }
+
+    gif.attr("src", 'image/anim/pet_'+currentPet+'.gif');
+
+
 }
 
 function setHealthGif(h) {
